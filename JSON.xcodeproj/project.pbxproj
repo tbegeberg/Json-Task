@@ -7,23 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		933926071F52FE6200A5F590 /* NetworkCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933926061F52FE6200A5F590 /* NetworkCaller.swift */; };
+		933926091F530FB400A5F590 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933926081F530FB400A5F590 /* Comments.swift */; };
 		935F83D01F51465B005AC5FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83CF1F51465B005AC5FB /* AppDelegate.swift */; };
-		935F83D21F51465B005AC5FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83D11F51465B005AC5FB /* ViewController.swift */; };
-		935F83D51F51465B005AC5FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 935F83D31F51465B005AC5FB /* Main.storyboard */; };
 		935F83D81F51465B005AC5FB /* JSON.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 935F83D61F51465B005AC5FB /* JSON.xcdatamodeld */; };
 		935F83DA1F51465B005AC5FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935F83D91F51465B005AC5FB /* Assets.xcassets */; };
 		935F83DD1F51465B005AC5FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 935F83DB1F51465B005AC5FB /* LaunchScreen.storyboard */; };
+		935F83E61F514700005AC5FB /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83E51F514700005AC5FB /* PostTableViewController.swift */; };
+		935F83E81F51494D005AC5FB /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83E71F51494D005AC5FB /* CommentTableViewController.swift */; };
+		935F83F21F514C3B005AC5FB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83F11F514C3B005AC5FB /* Post.swift */; };
+		935F83F41F51621A005AC5FB /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83F31F516219005AC5FB /* Network.swift */; };
+		935F83F71F5193EB005AC5FB /* Caller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83F61F5193EB005AC5FB /* Caller.swift */; };
+		935F83F91F5193F5005AC5FB /* AsyncCompleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83F81F5193F5005AC5FB /* AsyncCompleter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		933926061F52FE6200A5F590 /* NetworkCaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCaller.swift; sourceTree = "<group>"; };
+		933926081F530FB400A5F590 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		935F83CC1F51465B005AC5FB /* JSON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935F83CF1F51465B005AC5FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		935F83D11F51465B005AC5FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		935F83D41F51465B005AC5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		935F83D71F51465B005AC5FB /* JSON.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JSON.xcdatamodel; sourceTree = "<group>"; };
 		935F83D91F51465B005AC5FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		935F83DC1F51465B005AC5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		935F83DE1F51465B005AC5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		935F83E51F514700005AC5FB /* PostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
+		935F83E71F51494D005AC5FB /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
+		935F83F11F514C3B005AC5FB /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		935F83F31F516219005AC5FB /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		935F83F61F5193EB005AC5FB /* Caller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caller.swift; sourceTree = "<group>"; };
+		935F83F81F5193F5005AC5FB /* AsyncCompleter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCompleter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,53 @@
 		935F83CE1F51465B005AC5FB /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				935F83F51F5193E0005AC5FB /* TheisExample */,
 				935F83CF1F51465B005AC5FB /* AppDelegate.swift */,
-				935F83D11F51465B005AC5FB /* ViewController.swift */,
-				935F83D31F51465B005AC5FB /* Main.storyboard */,
+				935F83EA1F514B97005AC5FB /* Network */,
+				935F83E91F514B87005AC5FB /* Models */,
+				935F83E41F5146C0005AC5FB /* Controllers */,
 				935F83D91F51465B005AC5FB /* Assets.xcassets */,
 				935F83DB1F51465B005AC5FB /* LaunchScreen.storyboard */,
 				935F83DE1F51465B005AC5FB /* Info.plist */,
 				935F83D61F51465B005AC5FB /* JSON.xcdatamodeld */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		935F83E41F5146C0005AC5FB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				935F83E51F514700005AC5FB /* PostTableViewController.swift */,
+				935F83E71F51494D005AC5FB /* CommentTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		935F83E91F514B87005AC5FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				935F83F11F514C3B005AC5FB /* Post.swift */,
+				933926081F530FB400A5F590 /* Comments.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		935F83EA1F514B97005AC5FB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				935F83F31F516219005AC5FB /* Network.swift */,
+				933926061F52FE6200A5F590 /* NetworkCaller.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		935F83F51F5193E0005AC5FB /* TheisExample */ = {
+			isa = PBXGroup;
+			children = (
+				935F83F61F5193EB005AC5FB /* Caller.swift */,
+				935F83F81F5193F5005AC5FB /* AsyncCompleter.swift */,
+			);
+			name = TheisExample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +178,6 @@
 			files = (
 				935F83DD1F51465B005AC5FB /* LaunchScreen.storyboard in Resources */,
 				935F83DA1F51465B005AC5FB /* Assets.xcassets in Resources */,
-				935F83D51F51465B005AC5FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,23 +188,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				935F83D21F51465B005AC5FB /* ViewController.swift in Sources */,
+				935F83F91F5193F5005AC5FB /* AsyncCompleter.swift in Sources */,
+				933926091F530FB400A5F590 /* Comments.swift in Sources */,
 				935F83D81F51465B005AC5FB /* JSON.xcdatamodeld in Sources */,
+				935F83F71F5193EB005AC5FB /* Caller.swift in Sources */,
+				935F83E61F514700005AC5FB /* PostTableViewController.swift in Sources */,
+				935F83F41F51621A005AC5FB /* Network.swift in Sources */,
+				935F83E81F51494D005AC5FB /* CommentTableViewController.swift in Sources */,
+				933926071F52FE6200A5F590 /* NetworkCaller.swift in Sources */,
 				935F83D01F51465B005AC5FB /* AppDelegate.swift in Sources */,
+				935F83F21F514C3B005AC5FB /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		935F83D31F51465B005AC5FB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				935F83D41F51465B005AC5FB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		935F83DB1F51465B005AC5FB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -303,6 +351,7 @@
 				935F83E31F51465B005AC5FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
