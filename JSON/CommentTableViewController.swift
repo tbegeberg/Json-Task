@@ -10,7 +10,7 @@ import UIKit
 
 class CommentTableViewController: UITableViewController {
 
-    var commentsArray = [Comments]()
+    var commentArray = [Comment]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,13 +18,15 @@ class CommentTableViewController: UITableViewController {
         self.title = "Comments"
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellComment")
         
-        commentsArray.removeAll()
+        commentArray.removeAll()
         
-        let caller = NetworkCaller.shared
-        caller.getOutputComment(url: "https://jsonplaceholder.typicode.com/comments") { (result) in
+        let caller = NetworkHandler.shared
+        caller.getJSONComments(url: "https://jsonplaceholder.typicode.com/comments") { (result) in
             switch result {
             case .success(let value):
-                self.commentsArray = value as! [Comments]
+                if let items = value as? [Comment]{
+                    self.commentArray = items
+                }
                 self.tableView.reloadData()
             case .error(let error):
                 print(error)
@@ -43,15 +45,15 @@ class CommentTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return commentsArray.count
+        return commentArray.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellComment", for: indexPath)
 
-        let comments = self.commentsArray[indexPath.row]
-        cell.textLabel?.text = comments.name
+        let comment = self.commentArray[indexPath.row]
+        cell.textLabel?.text = comment.name
         
         return cell
     }

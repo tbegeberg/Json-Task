@@ -12,7 +12,7 @@ class PostTableViewController: UITableViewController {
 
     
     let commentViewButton = UIBarButtonItem()
-    var postArray = [Posts]()
+    var postArray = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +26,18 @@ class PostTableViewController: UITableViewController {
         
         postArray.removeAll()
         
-        let caller = NetworkCaller.shared
-        caller.getOutput(url: "https://jsonplaceholder.typicode.com/posts") { (result) in
+        let caller = NetworkHandler.shared
+        caller.getJSONPosts(url: "https://jsonplaceholder.typicode.com/posts") { (result) in
             switch result {
             case .success(let value):
-                self.postArray = value as! [Posts]
+                if let items = value as? [Post]{
+                     self.postArray = items
+                }
                 self.tableView.reloadData()
             case .error(let error):
                 print(error)
             }
         }
-        
     }
  
             
@@ -67,10 +68,8 @@ class PostTableViewController: UITableViewController {
     }
     
     
-    func buttonAction(sender:UIBarButtonItem!)
+    func buttonAction(sender:UIBarButtonItem)
     {
-        print("Button tapped")
-        
         let commentTable = CommentTableViewController()
         commentTable.view.backgroundColor = UIColor.white
         self.navigationController?.pushViewController(commentTable, animated: true)

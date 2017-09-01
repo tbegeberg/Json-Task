@@ -9,13 +9,42 @@
 import Foundation
 
 
-struct Posts {
+struct Post {
     
-    var userId: Int = 0
-    var id: Int = 0
-    var title:  String = ""
-    var body: String = ""
-
+    let userId: Int
+    let id: Int
+    let title: String
+    let body: String
+    
+    init(userId: Int, id: Int, title: String, body: String) {
+        self.userId = userId
+        self.id = id
+        self.title = title
+        self.body = body
+    }
+    
+    init(json: [String:Any]) throws {
+        guard let userId = json["userId"] as? Int else {
+            throw NetworkError.missing("Missing userID")
+        }
+        
+        guard let id = json["id"] as? Int else {
+            throw NetworkError.missing("Missing id")
+        }
+        
+        guard let title = json["title"] as? String else {
+            throw NetworkError.missing("Missing title")
+        }
+        
+        guard let body = json["body"] as? String else {
+            throw NetworkError.missing("Missing body")
+        }
+        
+        self.userId = userId
+        self.id = id
+        self.title = title
+        self.body = body
+    }
 }
 
 
