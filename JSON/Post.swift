@@ -15,14 +15,12 @@ struct Post {
     let id: Int
     let title: String
     let body: String
-    //let comment: [Comment]
     
-    init(userId: Int, id: Int, title: String, body: String, comment: Comment) {
+    init(userId: Int, id: Int, title: String, body: String) {
         self.userId = userId
         self.id = id
         self.title = title
         self.body = body
-        //self.comment = [comment]
     }
     
     init(json: [String:Any]) throws {
@@ -41,19 +39,18 @@ struct Post {
         guard let body = json["body"] as? String else {
             throw NetworkError.missing("Missing body Post Model")
         }
-        /*
-        guard let comment = json["comments"] as? Comment else {
-            throw NetworkError.missing("Missing comment Post Model")
-        }*/
-        
-        
-        
+    
         self.userId = userId
         self.id = id
         self.title = title
         self.body = body
-        //self.comment = [comment]
     }
+    
 }
+
+
+
+
+
 
 

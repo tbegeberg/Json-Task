@@ -9,10 +9,13 @@
 import UIKit
 
 class CommentTableViewController: UITableViewController {
-
-    var commentArray = [Comment]()
     
-    override func viewDidLoad() {
+    //how is data presented
+    
+    var commentArray = [Comment]()
+    var postId: Int = 0
+    
+    override func viewDidAppear(_ animated: Bool)  {
         super.viewDidLoad()
         
         self.title = "Comments"
@@ -21,7 +24,7 @@ class CommentTableViewController: UITableViewController {
         commentArray.removeAll()
         
         let caller = NetworkHandler.shared
-        caller.getJSONComments(url: "https://jsonplaceholder.typicode.com/comments") { (result) in
+        caller.getJSONComments(url: "https://jsonplaceholder.typicode.com/posts/\(postId)/comments") { (result) in
             switch result {
             case .success(let value):
                 if let items = value as? [Comment]{
@@ -53,7 +56,7 @@ class CommentTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellComment", for: indexPath)
 
         let comment = self.commentArray[indexPath.row]
-        cell.textLabel?.text = comment.name
+        cell.textLabel?.text = ("\(comment.postId): \(comment.name)")
         
         return cell
     }

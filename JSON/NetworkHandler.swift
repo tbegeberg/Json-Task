@@ -72,7 +72,8 @@ class NetworkHandler {
                     DispatchQueue.main.async() {
                         if commentArray.count > 0 {
                             completionHandler(Result.success(commentArray))
-                        }                         }
+                        }
+                    }
                 } catch {
                     print(error)
                 }

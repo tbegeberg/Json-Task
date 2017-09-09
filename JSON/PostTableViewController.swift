@@ -79,6 +79,7 @@ class PostTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let commentTable = CommentTableViewController()
         commentTable.view.backgroundColor = UIColor.white
+        commentTable.postId = (indexPath.row + 1)
         self.navigationController?.pushViewController(commentTable, animated: true)
     }
     
