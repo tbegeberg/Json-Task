@@ -8,21 +8,15 @@
 
 import UIKit
 
-class PostTableViewController: UITableViewController {
+class PostTableViewController: UITableViewController, UITextFieldDelegate {
 
-    
-    let commentViewButton = UIBarButtonItem()
     var postArray = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Posts"
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
-        commentViewButton.title = "Comments"
-        commentViewButton.target = self
-        commentViewButton.action = #selector(buttonAction(sender:))
-        self.navigationItem.setRightBarButton(commentViewButton, animated: true)
+
         
         postArray.removeAll()
         
@@ -39,8 +33,6 @@ class PostTableViewController: UITableViewController {
             }
         }
     }
- 
-            
     
 
     override func didReceiveMemoryWarning() {
@@ -60,22 +52,49 @@ class PostTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        
         let post = self.postArray[indexPath.row]
-        cell.textLabel?.text = post.title
-
+        
+        cell.textLabel?.text = ("\(post.id): \(post.title)")
+        
+        /*
+        let sampleTextField = UITextField(frame: CGRect(x: cell.frame.width - 100, y: 0, width: 100, height: cell.frame.height))
+        sampleTextField.placeholder = "Enter text here"
+        sampleTextField.font = sampleTextField.font?.withSize(15)
+        sampleTextField.borderStyle = UITextBorderStyle.roundedRect
+        sampleTextField.autocorrectionType = UITextAutocorrectionType.no
+        sampleTextField.keyboardType = UIKeyboardType.default
+        sampleTextField.returnKeyType = UIReturnKeyType.done
+        sampleTextField.clearButtonMode = UITextFieldViewMode.whileEditing
+        sampleTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        sampleTextField.delegate = self
+        sampleTextField.tag = indexPath.row
+        cell.addSubview(sampleTextField)
+        */
+        
         return cell
-    }
-    
-    
-    func buttonAction(sender:UIBarButtonItem)
-    {
-        let commentTable = CommentTableViewController()
-        commentTable.view.backgroundColor = UIColor.white
-        self.navigationController?.pushViewController(commentTable, animated: true)
         
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let commentTable = CommentTableViewController()
+        commentTable.view.backgroundColor = UIColor.white
+        self.navigationController?.pushViewController(commentTable, animated: true)
+    }
+    
+     /*
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        self.tableView.reloadData()
+    }
+    
+   
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("I am done")
+        print(textField.text)
+        print(textField.tag)
+    }*/
+    
+  
     
     /*
     // Override to support conditional editing of the table view.

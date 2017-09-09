@@ -15,35 +15,44 @@ struct Post {
     let id: Int
     let title: String
     let body: String
+    //let comment: [Comment]
     
-    init(userId: Int, id: Int, title: String, body: String) {
+    init(userId: Int, id: Int, title: String, body: String, comment: Comment) {
         self.userId = userId
         self.id = id
         self.title = title
         self.body = body
+        //self.comment = [comment]
     }
     
     init(json: [String:Any]) throws {
         guard let userId = json["userId"] as? Int else {
-            throw NetworkError.missing("Missing userID")
+            throw NetworkError.missing("Missing userID Post Model")
         }
         
         guard let id = json["id"] as? Int else {
-            throw NetworkError.missing("Missing id")
+            throw NetworkError.missing("Missing id Post Model")
         }
         
         guard let title = json["title"] as? String else {
-            throw NetworkError.missing("Missing title")
+            throw NetworkError.missing("Missing title Post Model")
         }
         
         guard let body = json["body"] as? String else {
-            throw NetworkError.missing("Missing body")
+            throw NetworkError.missing("Missing body Post Model")
         }
+        /*
+        guard let comment = json["comments"] as? Comment else {
+            throw NetworkError.missing("Missing comment Post Model")
+        }*/
+        
+        
         
         self.userId = userId
         self.id = id
         self.title = title
         self.body = body
+        //self.comment = [comment]
     }
 }
 

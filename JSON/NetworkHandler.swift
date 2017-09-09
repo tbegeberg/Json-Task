@@ -13,46 +13,41 @@ class NetworkHandler {
     
     static let shared = NetworkHandler()
     
+    //make fetch of comment inside post model with the comment
+    
     func getJSONPosts(url:String, completionHandler: @escaping (Result<[Any]>)->()) {
 
         var postArray = [Post]()
-        let url = URL(string: url)
-        
-        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+      
+        if let url = URL(string: url) {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 
-                if error != nil {
-                    print("Post error: \(error?.localizedDescription)")
-                } else {
-                    if let urlContent = data {
-                        do {
-                            if let json = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as? [[String:Any]] {
+                if let error = error {
+                    return completionHandler(Result.error(error))
+                }
+                if let urlContent = data {
+                    do {
+                        if let json = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as? [[String:Any]] {
                             
-                                for result in json {
-                                    let post = try Post(json: result)
-                                    postArray.append(post)
-                                    }
-   
-                            
-                            /*
-                            postArray = json.flatMap({ (<#[String : Any]#>) -> ElementOfResult? in
-                                <#code#>
-                            })
-                            */
-
+                            for result in json {
+                                let post = try Post(json: result)
+                                postArray.append(post)
                             }
                             
-                            DispatchQueue.main.async() {
-                                if postArray.count > 0 {
-                                    completionHandler(Result.success(postArray))
-                                }
-                            }
-                        } catch {
-                            print(error)
                         }
+                        DispatchQueue.main.async() {
+                            if postArray.count > 0 {
+                                completionHandler(Result.success(postArray))
+                            }
+                        }
+                    } catch {
+                        print(error)
                     }
                 }
             }
             task.resume()
+        }
+        
     }
     
     func getJSONComments(url:String, completionHandler: @escaping (Result<[Any]>)->()) {
@@ -62,33 +57,24 @@ class NetworkHandler {
         
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             
-            if error != nil {
-                print("Comment Error: \(error?.localizedDescription)")
-            } else {
-                if let urlContent = data {
-                    do {
-                        if let json = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as? [[String:Any]] {
-                            
-                            for result in json {
-                                let comment = try Comment(json: result)
-                                commentArray.append(comment)
-                            }
-                            
-                            
-                            /*
-                             postArray = json.flatMap({ (<#[String : Any]#>) -> ElementOfResult? in
-                             <#code#>
-                             })
-                             */
-                            
+            if let error = error {
+                return completionHandler(Result.error(error))
+            }
+            if let urlContent = data {
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as? [[String:Any]] {
+
+                        for result in json {
+                            let comment = try Comment(json: result)
+                            commentArray.append(comment)
                         }
-                        DispatchQueue.main.async() {
-                            if commentArray.count > 0 {
-                                completionHandler(Result.success(commentArray))
-                            }                         }
-                    } catch {
-                        print(error)
                     }
+                    DispatchQueue.main.async() {
+                        if commentArray.count > 0 {
+                            completionHandler(Result.success(commentArray))
+                        }                         }
+                } catch {
+                    print(error)
                 }
             }
         }

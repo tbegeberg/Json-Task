@@ -27,23 +27,23 @@ struct Comment {
     
     init(json: [String:Any]) throws {
         guard let postId = json["postId"] as? Int else {
-            throw NetworkError.missing("Missing postId")
+            throw NetworkError.missing("Missing postId Comment Model")
         }
         
         guard let id = json["id"] as? Int else {
-            throw NetworkError.missing("Missing id")
+            throw NetworkError.missing("Missing id Comment Model")
         }
         
         guard let name = json["name"] as? String else {
-            throw NetworkError.missing("Missing name")
+            throw NetworkError.missing("Missing name Comment Model")
         }
         
         guard let email = json["email"] as? String else {
-            throw NetworkError.missing("Missing email")
+            throw NetworkError.missing("Missing email Comment Model")
         }
         
         guard let body = json["body"] as? String else {
-            throw NetworkError.missing("Missing body")
+            throw NetworkError.missing("Missing body Comment Model")
         }
         
         self.postId = postId
