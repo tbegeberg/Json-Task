@@ -30,6 +30,8 @@ class CommentTableViewController: UITableViewController {
                 if let items = value as? [Comment]{
                     self.commentArray = items
                 }
+                self.tableView.estimatedRowHeight = 40.0
+                self.tableView.rowHeight = UITableViewAutomaticDimension
                 self.tableView.reloadData()
             case .error(let error):
                 print(error)
@@ -57,6 +59,7 @@ class CommentTableViewController: UITableViewController {
 
         let comment = self.commentArray[indexPath.row]
         cell.textLabel?.text = ("\(comment.postId): \(comment.name)")
+        cell.textLabel?.numberOfLines = Int(UITableViewAutomaticDimension)
         
         return cell
     }
