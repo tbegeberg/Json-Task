@@ -20,6 +20,7 @@
 		935F83F41F51621A005AC5FB /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83F31F516219005AC5FB /* NetworkHandler.swift */; };
 		935F83F71F5193EB005AC5FB /* Caller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83F61F5193EB005AC5FB /* Caller.swift */; };
 		935F83F91F5193F5005AC5FB /* AsyncCompleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F83F81F5193F5005AC5FB /* AsyncCompleter.swift */; };
+		A9FE8B441F683BA00016A749 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE8B431F683BA00016A749 /* BaseTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		935F83F31F516219005AC5FB /* NetworkHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		935F83F61F5193EB005AC5FB /* Caller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caller.swift; sourceTree = "<group>"; };
 		935F83F81F5193F5005AC5FB /* AsyncCompleter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCompleter.swift; sourceTree = "<group>"; };
+		A9FE8B431F683BA00016A749 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		935F83E41F5146C0005AC5FB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A9FE8B431F683BA00016A749 /* BaseTableViewController.swift */,
 				935F83E51F514700005AC5FB /* PostTableViewController.swift */,
 				935F83E71F51494D005AC5FB /* CommentTableViewController.swift */,
 			);
@@ -197,6 +200,7 @@
 				935F83D81F51465B005AC5FB /* JSON.xcdatamodeld in Sources */,
 				935F83F71F5193EB005AC5FB /* Caller.swift in Sources */,
 				935F83E61F514700005AC5FB /* PostTableViewController.swift in Sources */,
+				A9FE8B441F683BA00016A749 /* BaseTableViewController.swift in Sources */,
 				935F83F41F51621A005AC5FB /* NetworkHandler.swift in Sources */,
 				935F83E81F51494D005AC5FB /* CommentTableViewController.swift in Sources */,
 				935F83D01F51465B005AC5FB /* AppDelegate.swift in Sources */,
