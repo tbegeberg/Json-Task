@@ -14,7 +14,7 @@ class PostTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Posts"
+        self.title = "Posts new title"
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
         
