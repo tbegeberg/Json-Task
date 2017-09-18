@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Post {
+struct Post: Initializer {
     
     let userId: Int
     let id: Int

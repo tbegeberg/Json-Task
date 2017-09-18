@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Comment {
+struct Comment: Initializer {
 
     var postId: Int = 0
     var id: Int = 0

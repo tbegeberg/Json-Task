@@ -10,9 +10,6 @@ import Foundation
 
 enum NetworkError: LocalizedError {
     case missing(String)
-
-
-
 }
 
 

@@ -13,31 +13,31 @@ class NetworkHandler {
     
     static let shared = NetworkHandler()
     
-    //make fetch of comment inside post model with the comment
-    
-    func getJSONPosts(url:String, completionHandler: @escaping (Result<[Any]>)->()) {
+    func getJSON<T> (url: String, completionHandler: @escaping (Result<[T]>)->()) where T: Initializer {
 
-        var postArray = [Post]()
+        var jsonArray = [T]()
       
         if let url = URL(string: url) {
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 
-                if let error = error {
-                    return completionHandler(Result.error(error))
+                DispatchQueue.main.async {
+                    if let error = error {
+                        return completionHandler(Result.error(error))
+                    }
                 }
                 if let urlContent = data {
                     do {
                         if let json = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as? [[String:Any]] {
                             
                             for result in json {
-                                let post = try Post(json: result)
-                                postArray.append(post)
+                                let post = try T(json: result)
+                                jsonArray.append(post)
                             }
                             
                         }
-                        DispatchQueue.main.async() {
-                            if postArray.count > 0 {
-                                completionHandler(Result.success(postArray))
+                        DispatchQueue.main.async {
+                            if jsonArray.count > 0 {
+                                completionHandler(Result.success(jsonArray))
                             }
                         }
                     } catch {
@@ -50,15 +50,17 @@ class NetworkHandler {
         
     }
     
-    func getJSONComments(url:String, completionHandler: @escaping (Result<[Any]>)->()) {
+    func getJSONComments(url:String, completionHandler: @escaping (Result<[Comment]>)->()) {
         
         var commentArray = [Comment]()
         let url = URL(string: url)
         
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             
-            if let error = error {
-                return completionHandler(Result.error(error))
+            DispatchQueue.main.async {
+                if let error = error {
+                    return completionHandler(Result.error(error))
+                }
             }
             if let urlContent = data {
                 do {
@@ -69,7 +71,7 @@ class NetworkHandler {
                             commentArray.append(comment)
                         }
                     }
-                    DispatchQueue.main.async() {
+                    DispatchQueue.main.async {
                         if commentArray.count > 0 {
                             completionHandler(Result.success(commentArray))
                         }
