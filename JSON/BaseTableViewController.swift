@@ -1,8 +1,8 @@
 //
-//  BaseTableViewController.swift
-//  JSON
+//  File.swift
+//  api demo
 //
-//  Created by Theis Egeberg on 12/09/2017.
+//  Created by TørK on 18/09/2017.
 //  Copyright © 2017 Tørk Egeberg. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ class BaseTableViewController:UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         self.tableView.estimatedRowHeight = 40.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -42,7 +42,6 @@ class BaseTableViewController:UITableViewController {
         return postArray.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
@@ -53,23 +52,25 @@ class BaseTableViewController:UITableViewController {
         
         return cell
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let commentTable = CommentTableViewController()
+        let row = indexPath.row + 1
         
-        self.postArray[indexPath.row].getComments(complete: { (result) in
+        NetworkHandler.shared.getJSON (url: "https://jsonplaceholder.typicode.com/posts/\(row)/comments") { (result:Result<[Comment]>) in
             switch result {
+                
             case .success(let comments):
-                commentTable.commentArray = comments
-                self.navigationController?.pushViewController(commentTable, animated: true)
+                commentTable.postArray = comments
+                if self.title == "Comments" {
+                    print("Already in CommentView")
+                } else {
+                    self.navigationController?.pushViewController(commentTable, animated: true)
+                }
+                
             case .error(let error):
                 print(error)
             }
-        })
-        
-    }*/
-    
-
+        }
+    }
 }

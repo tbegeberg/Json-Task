@@ -21,5 +21,4 @@ class PostTableViewController: BaseTableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
 }
