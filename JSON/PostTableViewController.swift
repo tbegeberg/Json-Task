@@ -14,11 +14,22 @@ class PostTableViewController: BaseTableViewController {
         super.init(nibName: nil, bundle: nil)
         self.title = "Posts"
         self.url = "https://jsonplaceholder.typicode.com/posts"
+        self.nextTableView = CommentTableViewController()
         
+        networkCaller(url: url) { (result:Result<[Post]>) in
+            switch result {
+                
+            case .success(let value):
+                self.postArray = value
+                
+            case .error(let error):
+                print(error)
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+        
 }

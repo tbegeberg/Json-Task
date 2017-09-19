@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class BaseTableViewController:UITableViewController {
     
     var postArray = [Listable]() {
@@ -17,6 +18,8 @@ class BaseTableViewController:UITableViewController {
     }
     
     var url = String()
+    var row = Int()
+    var nextTableView = UIViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +27,17 @@ class BaseTableViewController:UITableViewController {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         self.tableView.estimatedRowHeight = 40.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
-        NetworkHandler.shared.getJSON (url: url) { (result:Result<[Post]>) in
+
+    }
+    
+    func networkCaller<T> (url: String, completion: @escaping (Result<[T]>)->()) where T: Initializer {
+        NetworkHandler.shared.getJSON (url: url) { (result:Result<[T]>) in
             switch result {
                 
             case .success(let value):
-                self.postArray = value
-                
+                if let values = value as? [Listable]{
+                    self.postArray = values
+                }
             case .error(let error):
                 print(error)
             }
@@ -46,31 +53,17 @@ class BaseTableViewController:UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let post = self.postArray[indexPath.row]
-        
+
         cell.textLabel?.text = ("\(post.title)")
         cell.textLabel?.numberOfLines = Int(UITableViewAutomaticDimension)
         
         return cell
     }
-    
+   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let commentTable = CommentTableViewController()
-        let row = indexPath.row + 1
-        
-        NetworkHandler.shared.getJSON (url: "https://jsonplaceholder.typicode.com/posts/\(row)/comments") { (result:Result<[Comment]>) in
-            switch result {
-                
-            case .success(let comments):
-                commentTable.postArray = comments
-                if self.title == "Comments" {
-                    print("Already in CommentView")
-                } else {
-                    self.navigationController?.pushViewController(commentTable, animated: true)
-                }
-                
-            case .error(let error):
-                print(error)
-            }
+        if nextTableView.title != nil {
+            self.navigationController?.pushViewController(self.nextTableView, animated: true)
         }
     }
+    
 }
