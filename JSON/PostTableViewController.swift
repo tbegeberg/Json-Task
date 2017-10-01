@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostTableViewController: BaseTableViewController {
+class PostTableViewController: BaseTableViewController{
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -16,7 +16,7 @@ class PostTableViewController: BaseTableViewController {
         self.url = "https://jsonplaceholder.typicode.com/posts"
         self.nextTableView = CommentTableViewController()
         
-        networkCaller(url: url) { (result:Result<[Post]>) in
+        NetworkHandler.shared.getJSON (url: url) { (result:Result<[Post]>) in
             switch result {
                 
             case .success(let value):

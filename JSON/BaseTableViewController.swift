@@ -8,41 +8,23 @@
 
 import UIKit
 
-
-class BaseTableViewController:UITableViewController {
+class BaseTableViewController :UITableViewController {
     
     var postArray = [Listable]() {
         didSet {
             self.tableView.reloadData()
         }
     }
-    
     var url = String()
+    var nextTableView = UITableViewController()
     var row = Int()
-    var nextTableView = UIViewController()
     
-    override func viewDidLoad() {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
-        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         self.tableView.estimatedRowHeight = 40.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
-
-    }
-    
-    func networkCaller<T> (url: String, completion: @escaping (Result<[T]>)->()) where T: Initializer {
-        NetworkHandler.shared.getJSON (url: url) { (result:Result<[T]>) in
-            switch result {
-                
-            case .success(let value):
-                if let values = value as? [Listable]{
-                    self.postArray = values
-                }
-            case .error(let error):
-                print(error)
-            }
-        }
-        
+        print(row)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,9 +43,11 @@ class BaseTableViewController:UITableViewController {
     }
    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if nextTableView.title != nil {
-            self.navigationController?.pushViewController(self.nextTableView, animated: true)
-        }
+        
+        row = indexPath.row + 1
+        tableView.reloadData()
+        //self.navigationController?.pushViewController(self.nextTableView, animated: true)
+        
     }
     
 }

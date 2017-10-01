@@ -18,7 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let mainController = PostTableViewController() as UITableViewController
+        let mainController = BaseTableViewController()
+        mainController.title = "Posts"
+        mainController.url = "https://jsonplaceholder.typicode.com/posts"
+        NetworkHandler.shared.getJSON (url: mainController.url) { (result:Result<[Post]>) in
+            switch result {
+                
+            case .success(let value):
+                mainController.postArray = value
+                
+            case .error(let error):
+                print(error)
+            }
+        }
         mainController.view.backgroundColor = UIColor.white
         let navigationController = UINavigationController(rootViewController: mainController)
         navigationController.navigationBar.isTranslucent = false
