@@ -10,14 +10,13 @@ import UIKit
 
 var row = Int()
 
-class BaseTableViewController :UITableViewController {
+class BaseTableViewController: UITableViewController {
     
     var postArray = [Listable]() {
         didSet {
             self.tableView.reloadData()
         }
     }
-    var nextTableView = UIViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +25,8 @@ class BaseTableViewController :UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    weak var dc: AppDelegate?
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postArray.count
     }
@@ -43,7 +44,7 @@ class BaseTableViewController :UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         row = indexPath.row + 1
-        self.navigationController?.pushViewController(self.nextTableView, animated: true)
+        dc?.baseTableViewWasClicked()
     }
-    
+ 
 }

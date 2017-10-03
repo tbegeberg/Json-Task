@@ -47,7 +47,6 @@ struct Post: Initializer {
         self.title = title
         self.body = body
     }
-
 }
 
 extension Post {
