@@ -52,7 +52,7 @@ struct Post: Initializer {
 
 extension Post {
     
-    func getComments(complete:@escaping (Result<[Comment]>)->()) {
+    mutating func getComments(complete:@escaping (Result<[Comment]>)->()) {
         NetworkHandler.shared.getJSON(url: "https://jsonplaceholder.typicode.com/posts/\(self.id)/comments") {
             (result:Result<[Comment]>) in
             

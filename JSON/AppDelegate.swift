@@ -13,15 +13,14 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         let mainController = BaseTableViewController()
         mainController.title = "Posts"
-        mainController.url = "https://jsonplaceholder.typicode.com/posts"
-        NetworkHandler.shared.getJSON (url: mainController.url) { (result:Result<[Post]>) in
+        mainController.nextTableView = CommentTableViewController()
+        NetworkHandler.shared.getJSON (url: "https://jsonplaceholder.typicode.com/posts") { (result:Result<[Post]>) in
             switch result {
                 
             case .success(let value):
@@ -31,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(error)
             }
         }
+        
         mainController.view.backgroundColor = UIColor.white
         let navigationController = UINavigationController(rootViewController: mainController)
         navigationController.navigationBar.isTranslucent = false
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

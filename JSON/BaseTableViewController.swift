@@ -8,6 +8,8 @@
 
 import UIKit
 
+var row = Int()
+
 class BaseTableViewController :UITableViewController {
     
     var postArray = [Listable]() {
@@ -15,16 +17,13 @@ class BaseTableViewController :UITableViewController {
             self.tableView.reloadData()
         }
     }
-    var url = String()
-    var nextTableView = UITableViewController()
-    var row = Int()
+    var nextTableView = UIViewController()
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         self.tableView.estimatedRowHeight = 40.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        print(row)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,13 +40,10 @@ class BaseTableViewController :UITableViewController {
         
         return cell
     }
-   
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         row = indexPath.row + 1
-        tableView.reloadData()
-        //self.navigationController?.pushViewController(self.nextTableView, animated: true)
-        
+        self.navigationController?.pushViewController(self.nextTableView, animated: true)
     }
     
 }

@@ -9,13 +9,12 @@
 import UIKit
 
 class CommentTableViewController: BaseTableViewController {
-    
+  
     init() {
         super.init(nibName: nil, bundle: nil)
         self.title = "Comments"
-        self.url = "https://jsonplaceholder.typicode.com/posts/\(row)/comments"
         
-        NetworkHandler.shared.getJSON (url: url) { (result:Result<[Comment]>) in
+        NetworkHandler.shared.getJSON (url: "https://jsonplaceholder.typicode.com/posts/\(row)/comments") { (result:Result<[Comment]>) in
             switch result {
                 
             case .success(let value):
