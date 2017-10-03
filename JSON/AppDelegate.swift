@@ -44,10 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         mainController.tableView.allowsSelection = false
         let button = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(showPosts))
-        mainController.navigationItem.setRightBarButton(button, animated: true)
+        mainController.navigationItem.setLeftBarButton(button, animated: true)
     }
     
     func showPosts() {
+        mainController.title = "Post"
         NetworkHandler.shared.getJSON (url: "https://jsonplaceholder.typicode.com/posts") { (result:Result<[Post]>) in
             switch result {
                 
@@ -59,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         mainController.tableView.allowsSelection = true
+        mainController.navigationItem.leftBarButtonItem = nil
     }
 }
 
